@@ -97,6 +97,14 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		 * 父类的构造方法
 		 * 创建一个读取注解的Bean定义读取器
 		 * 什么是bean定义？BeanDefinition
+		 *
+		 * 在执行AnnotationConfigApplicationContext构造方法时，先执行父类GenericApplicationContext中构造方法
+		 *
+		 * public GenericApplicationContext() {
+		 * 		this.beanFactory = new DefaultListableBeanFactory();
+		 * }
+		 *
+		 * 已经实例化了beanFactory(bean工厂)
 		 */
 		this.reader = new AnnotatedBeanDefinitionReader(this);
 
