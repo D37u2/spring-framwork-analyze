@@ -21,6 +21,8 @@ dependencies {
 	optional("org.beanshell:bsh:2.0b5")
 	optional("joda-time:joda-time:2.10.1")
 	optional("org.hibernate:hibernate-validator:5.4.3.Final")
+	//添加 lombok 依赖
+	optional("org.projectlombok:lombok:1.14.2")
 	optional("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
 	optional("org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}")
 	testCompile("org.codehaus.groovy:groovy-jsr223:${groovyVersion}")
