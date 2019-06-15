@@ -27,11 +27,25 @@ package org.springframework.context.annotation;
  * @since 2.5
  * @see ScopeMetadata
  */
+
+/**
+ * 设置动态代理类型
+ *
+ * 1、DEFAULT 使用默认的，这种情况其他组件扫描指令中配置好，延续使用其他组件配置好的就OK。若在其他组件中未设置则 = NO
+ * 2、NO 无代理
+ * 3、INTERFACES 使用JDK动态代理
+ * 4、TARGET_CLASS 使用cglib动态代理
+ *
+ */
+
 public enum ScopedProxyMode {
 
 	/**
+	 * 默认值通常等于{@link #NO}，除非有不同的默认值
 	 * Default typically equals {@link #NO}, unless a different default
+	 *
 	 * has been configured at the component-scan instruction level.
+	 * 已在组件扫描指令级配置。
 	 */
 	DEFAULT,
 
@@ -41,17 +55,23 @@ public enum ScopedProxyMode {
 	 * non-singleton scoped instance, which should favor the use of the
 	 * {@link #INTERFACES} or {@link #TARGET_CLASS} proxy-modes instead if it
 	 * is to be used as a dependency.
+	 *
+	 * 当与非单例范围的实例一起使用时，这种代理模式通常不太有用，如果要将其用作依赖项，则应该使用{@link #INTERFACES}或{@link #TARGET_CLASS}代理模式。
 	 */
 	NO,
 
 	/**
 	 * Create a JDK dynamic proxy implementing <i>all</i> interfaces exposed by
 	 * the class of the target object.
+	 *
+	 * 创建一个JDK动态代理来实现<i>所有由目标对象的类公开的</i>接口
 	 */
 	INTERFACES,
 
 	/**
 	 * Create a class-based proxy (uses CGLIB).
+	 *
+	 * 创建一个基于类的代理(使用CGLIB)。
 	 */
 	TARGET_CLASS;
 
