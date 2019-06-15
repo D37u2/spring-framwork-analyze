@@ -61,6 +61,12 @@ import org.springframework.util.StringUtils;
  * @see org.springframework.stereotype.Controller#value()
  * @see javax.inject.Named#value()
  */
+
+/**
+ *
+ * javaconfig方式Spring初始化默认bean命名规则生产工具
+ *
+ */
 public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 
 	private static final String COMPONENT_ANNOTATION_CLASSNAME = "org.springframework.stereotype.Component";
@@ -69,12 +75,20 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	@Override
 	public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry) {
 		if (definition instanceof AnnotatedBeanDefinition) {
+
+			/**
+			 * 判断该类上是否有自己设置 beanName。 例如：@Service(value = "userService")
+			 */
+
 			String beanName = determineBeanNameFromAnnotation((AnnotatedBeanDefinition) definition);
 			if (StringUtils.hasText(beanName)) {
 				// Explicit bean name found.
 				return beanName;
 			}
 		}
+		/**
+		 * 没有设置 beanName 。使用默认的beanName命名规则
+		 */
 		// Fallback: generate a unique default bean name.
 		return buildDefaultBeanName(definition, registry);
 	}
@@ -87,11 +101,24 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	@Nullable
 	protected String determineBeanNameFromAnnotation(AnnotatedBeanDefinition annotatedDef) {
 		AnnotationMetadata amd = annotatedDef.getMetadata();
+
+		/**
+		 * 获取类 annotatedDef 的所有注解。
+		 * 在BeanInitSpringConfig中拿到的注解为：
+		 * [Configuration,ComponentScan]
+		 */
 		Set<String> types = amd.getAnnotationTypes();
 		String beanName = null;
 		for (String type : types) {
+
+			/**
+			 * 获取注解的属性值
+			 */
 			AnnotationAttributes attributes = AnnotationConfigUtils.attributesFor(amd, type);
 			if (attributes != null && isStereotypeWithNameValue(type, amd.getMetaAnnotationTypes(type), attributes)) {
+				/**
+				 * 获取注解的value值，例如 @Service(value = "userService"),若有设置则 beanName = value
+				 */
 				Object value = attributes.get("value");
 				if (value instanceof String) {
 					String strVal = (String) value;
