@@ -1,4 +1,4 @@
-package com.spring.zz.Entity;
+package com.spring.zz.entity;
 
 import lombok.Data;
 

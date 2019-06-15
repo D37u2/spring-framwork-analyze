@@ -1,6 +1,6 @@
 package com.spring.zz.Service.impl;
 
-import com.spring.zz.Entity.UserEntity;
+import com.spring.zz.entity.UserEntity;
 import com.spring.zz.Service.IUserService;
 import org.springframework.stereotype.Component;
 

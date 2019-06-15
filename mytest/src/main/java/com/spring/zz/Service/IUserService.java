@@ -1,6 +1,6 @@
 package com.spring.zz.Service;
 
-import com.spring.zz.Entity.UserEntity;
+import com.spring.zz.entity.UserEntity;
 
 /**
  * @author: zhoujiong
