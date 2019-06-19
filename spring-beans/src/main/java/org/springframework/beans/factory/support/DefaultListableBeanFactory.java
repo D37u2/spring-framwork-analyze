@@ -923,6 +923,12 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 		}
 		else {
 			if (hasBeanCreationStarted()) {
+
+				/**
+				 * 判断这个注册器是否已经注册过bean
+				 *
+				 * 如果注册过，更新beanDefinitionNames的大小。因为beanDefinitionNames在实例化的时候已经设置了List的大小
+				 */
 				// Cannot modify startup-time collection elements anymore (for stable iteration)
 				synchronized (this.beanDefinitionMap) {
 					this.beanDefinitionMap.put(beanName, beanDefinition);
