@@ -1,4 +1,4 @@
-package com.spring.zz.Service;
+package com.spring.zz.service;
 
 import com.spring.zz.entity.UserEntity;
 

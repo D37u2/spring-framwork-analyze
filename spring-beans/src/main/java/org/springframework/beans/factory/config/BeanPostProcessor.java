@@ -23,7 +23,7 @@ import org.springframework.lang.Nullable;
  * BeanPostProcessor是Spring框架的提供的一个扩展类点（不止一个）
  * 通过实现BeanPostProcessor接口，程序员就可插手bean实例化的过程,从而减轻了beanFactory的负担
  * 值得说明的是这个接口可以设置多个，会形成一个列表，然后依次执行
- * (但是spring默认的怎么办？set)
+ * (但是spring默认的怎么办？自己set进Spring容器)
  * 比如AOP就是在bean实例后期间将切面逻辑织入bean实例中的
  * AOP也正是通过BeanPostProcessor和IOC容器建立起了联系
  * （由spring提供的默认的PostPorcessor,spring提供了很多默认的PostProcessor,下面我会一一介绍这些实现类的功能）
@@ -47,7 +47,7 @@ import org.springframework.lang.Nullable;
  *  3、InstantiationAwareBeanPostProcessor
  *  4、CommonAnnotationBeanPostProcessor
  *  5、AutowiredAnnotationBeanPostProcessor
- *  6 、RequiredAnnotationBeanPostProcessor
+ *  6、RequiredAnnotationBeanPostProcessor
  *  7、BeanValidationPostProcessor
  *  8、AbstractAutoProxyCreator
  *  ......
